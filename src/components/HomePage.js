@@ -40,7 +40,7 @@ const HomePage = () => {
     itemsPerPage: 60,
   });
 
-  // const [searchText, setSearchText] = useState("");
+  const [searchText, setSearchText] = useState("");
 
   const navigate = useNavigate();
 

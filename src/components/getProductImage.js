@@ -2,10 +2,8 @@ import * as cheerio from "cheerio";
 import axios from "axios";
 
 async function getProductImage(productLink) {
-  const proxyUrl = "https://cors-anywhere.herokuapp.com/";
-  const fullUrl = `${proxyUrl}${productLink}`;
   try {
-    const response = await axios.get(fullUrl);
+    const response = await axios.get(productLink);
     const html = response.data;
     const $ = cheerio.load(html);
     const imageUrl = $("#main-image").attr("src");
