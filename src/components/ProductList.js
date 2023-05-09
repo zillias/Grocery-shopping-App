@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   IconButton,
   FormControl,
@@ -7,16 +7,27 @@ import {
   InputAdornment,
   Button,
 } from "@mui/material";
-import imagePlaceholder from "../Assets/No-Image-Placeholder.png";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
 import { useNavigate } from "react-router-dom";
 import AppContext from "./Context";
+import getProductImage from "./getProductImage";
 
 const ProductList = ({ product }) => {
   const navigate = useNavigate();
+
+  const [imageUrl, setImageUrl] = useState(null);
+
+  useEffect(() => {
+    async function fetchImage() {
+      const imageUrl = await getProductImage(product.link);
+      setImageUrl(imageUrl);
+    }
+    fetchImage();
+  }, [product.link]);
+
   const { changeCart, cart, changeWhishlist, whishlistItems } = useContext(
     AppContext
   );
@@ -24,11 +35,11 @@ const ProductList = ({ product }) => {
   const existingItem = cart.items.find((item) => item.id === product.id);
   const existingItemQuantity = existingItem ? existingItem.quantity : 0;
   const addQuantity = () => {
-    changeCart(product.id, existingItemQuantity + 1, product.image);
+    changeCart(product.id, existingItemQuantity + 1, imageUrl);
   };
   const minusQuantity = () => {
     existingItemQuantity &&
-      changeCart(product.id, existingItemQuantity - 1, product.image);
+      changeCart(product.id, existingItemQuantity - 1, imageUrl);
   };
 
   const itemOnWishlist = whishlistItems.find((item) => item.id === product.id);
@@ -44,8 +55,8 @@ const ProductList = ({ product }) => {
     <div className="product-card">
       <img
         className="clickable"
-        src={product.image.length ? product.image : imagePlaceholder}
-        alt={imagePlaceholder}
+        src={imageUrl}
+        alt={product.name}
         onClick={() => {
           navigate(`/home/product/${product.id}`);
           window.scrollTo(0, 0);

@@ -9,7 +9,7 @@ import {
 
 import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
-import AllProducts from "../Assets/Carrefour DATA.json";
+import AllProducts from "../Assets/Carrefour DATA English.json";
 import AppContext from "./Context";
 import { useNavigate } from "react-router-dom";
 

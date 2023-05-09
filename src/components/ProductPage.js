@@ -13,7 +13,7 @@ import noImagePlaceholder from "../Assets/No-Image-Placeholder.png";
 import ProductList from "./ProductList";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { useParams } from "react-router-dom";
-import allProducts from "../Assets/Carrefour DATA.json";
+import allProducts from "../Assets/Carrefour DATA English.json";
 import AppContext from "./Context";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 

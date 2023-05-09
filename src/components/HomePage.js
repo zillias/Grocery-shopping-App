@@ -15,7 +15,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import CloseIcon from "@mui/icons-material/Close";
 import Filter from "./Filter";
 import ProductList from "./ProductList";
-import allProducts from "../Assets/Carrefour DATA.json";
+import allProducts from "../Assets/Carrefour DATA English.json";
 import imagePlaceholder from "../Assets/No-Image-Placeholder.png";
 import { useNavigate } from "react-router-dom";
 import FilterListIcon from "@mui/icons-material/FilterList";
