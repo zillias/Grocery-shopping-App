@@ -43,7 +43,8 @@ const ProductPage = () => {
   }, [id]);
 
   const relatedProducts = allProducts.filter(
-    (product) => product.category === mainProduct.category
+    (product) =>
+      product.category === mainProduct.category && product.image !== "#N/A"
   );
   const startSlice = (currentPage - 1) * 30;
   const endSlice = startSlice + 30;
