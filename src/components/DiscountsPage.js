@@ -10,7 +10,8 @@ const DiscountsPage = () => {
 
   const discountedProducts = allProducts
     .filter((product) => product.category.trim() === category)
-    .filter((product) => product.oldprice.length);
+    .filter((product) => product.oldprice.length)
+    .filter((product) => product.image !== "#N/A");
 
   const highestDiscount = Math.floor(
     Math.max(

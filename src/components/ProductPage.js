@@ -9,7 +9,6 @@ import {
 } from "@mui/material";
 import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
-import noImagePlaceholder from "../Assets/No-Image-Placeholder.png";
 import ProductList from "./ProductList";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { useParams } from "react-router-dom";
@@ -58,12 +57,7 @@ const ProductPage = () => {
   return (
     <div className="homepage-container">
       <div className="product-display">
-        <img
-          src={
-            mainProduct.image.length ? mainProduct.image : noImagePlaceholder
-          }
-          alt={noImagePlaceholder}
-        />
+        <img src={mainProduct.image} alt={mainProduct.name} />
 
         <div className="product-detail-text">
           <div>

@@ -215,6 +215,7 @@ const HomePage = () => {
 
   const displayedProducts = allProducts
     .filter((product) => filterProduct(product))
+    .filter((product) => product.image !== "#N/A")
     .reverse();
 
   const startSlice = (state.currentPage - 1) * state.itemsPerPage;
@@ -329,7 +330,14 @@ const HomePage = () => {
                         on {category.category} section
                       </h6>
                     </div>
-                    <img src={category.category_image} alt={imagePlaceholder} />
+                    <img
+                      src={
+                        category.category_image.length
+                          ? category.category_image
+                          : imagePlaceholder
+                      }
+                      alt={category.category}
+                    />
                   </div>
                 )
             )}

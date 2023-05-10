@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import {
   IconButton,
   FormControl,
@@ -13,20 +13,9 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
 import { useNavigate } from "react-router-dom";
 import AppContext from "./Context";
-import getProductImage from "./getProductImage";
 
 const ProductList = ({ product }) => {
   const navigate = useNavigate();
-
-  const [imageUrl, setImageUrl] = useState(null);
-
-  useEffect(() => {
-    async function fetchImage() {
-      const imageUrl = await getProductImage(product.link);
-      setImageUrl(imageUrl);
-    }
-    fetchImage();
-  }, [product.link]);
 
   const { changeCart, cart, changeWhishlist, whishlistItems } = useContext(
     AppContext
@@ -35,11 +24,11 @@ const ProductList = ({ product }) => {
   const existingItem = cart.items.find((item) => item.id === product.id);
   const existingItemQuantity = existingItem ? existingItem.quantity : 0;
   const addQuantity = () => {
-    changeCart(product.id, existingItemQuantity + 1, imageUrl);
+    changeCart(product.id, existingItemQuantity + 1, product.image);
   };
   const minusQuantity = () => {
     existingItemQuantity &&
-      changeCart(product.id, existingItemQuantity - 1, imageUrl);
+      changeCart(product.id, existingItemQuantity - 1, product.image);
   };
 
   const itemOnWishlist = whishlistItems.find((item) => item.id === product.id);
@@ -55,7 +44,7 @@ const ProductList = ({ product }) => {
     <div className="product-card">
       <img
         className="clickable"
-        src={imageUrl}
+        src={product.image}
         alt={product.name}
         onClick={() => {
           navigate(`/home/product/${product.id}`);
